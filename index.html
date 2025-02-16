@@ -3,8 +3,81 @@
 <head>
     <meta http-equiv="refresh" content="0;url=/home.html">
     <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('org.jpg') repeat;
+            animation: fallStars 5s linear infinite;
+        }
+        @keyframes fallStars {
+            from { background-position: 0 0; }
+            to { background-position: 0 100%; }
+        }
+        .book {
+            position: relative;
+            width: 120px;
+            height: 160px;
+            perspective: 800px;
+        }
+        .pages {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            transform-origin: left;
+            animation: openBook 2s ease-in-out forwards;
+        }
+        @keyframes openBook {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(-150deg); }
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <p>If you are not redirected, <a href="/home.html">click here</a>.</p>
+    <div class="stars"></div>
+    <div class="book">
+        <div class="pages" id="pages">CADPOINT</div>
+    </div>
+    <div class="message" id="message">Welcome to My Tutorials Website</div>
+    <script>
+        setTimeout(() => {
+            document.getElementById("pages").style.animation = "openBook 2s ease-in-out forwards";
+            setTimeout(() => {
+                document.getElementById("message").style.opacity = "1";
+            }, 2000);
+        }, 1000);
+    </script>
 </body>
 </html>
